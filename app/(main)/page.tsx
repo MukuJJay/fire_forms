@@ -1,7 +1,14 @@
-import React from "react";
+import CardWrapper from "@/components/cards/card-wrapper";
+import React, { Suspense } from "react";
 
 const Page = () => {
-  return <div>Page</div>;
+  return (
+    <div>
+      <Suspense fallback={<CardWrapper loading={true} />}>
+        <CardWrapper />
+      </Suspense>
+    </div>
+  );
 };
 
 export default Page;
