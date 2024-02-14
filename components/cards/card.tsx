@@ -26,21 +26,21 @@ const IconMap = {
 function Card({ title, helperText, value, icon, loading }: CardProps) {
   return (
     <CardWrapper className="shadow-primary shadow-sm">
-      <CardHeader>
-        <CardTitle className="flex items-center justify-between">
+      <CardHeader className="pb-1">
+        <CardTitle className="flex items-center justify-between text-xl text-slate-500">
           {title} {IconMap[icon]}
         </CardTitle>
       </CardHeader>
       <CardContent>
         {loading ? (
           <Skeleton className="rounded-full">
-            <span className="opacity-0">0</span>
+            <span className="opacity-0 text-2xl">0</span>
           </Skeleton>
         ) : (
-          value
+          <span className="text-[25px]">{value}</span>
         )}
+        <p className="text-primary mt-1">{helperText}</p>
       </CardContent>
-      <CardFooter className="text-primary">{helperText}</CardFooter>
     </CardWrapper>
   );
 }

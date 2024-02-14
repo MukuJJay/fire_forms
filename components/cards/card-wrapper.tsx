@@ -6,7 +6,7 @@ const CardWrapper = async ({ loading }: { loading?: boolean }) => {
     await getUserStats();
 
   return (
-    <div className="grid grid-cols-4 xl:grid-cols-2 md:!grid-cols-1 gap-4">
+    <div className="grid grid-cols-4 xl:grid-cols-2 md:!grid-cols-1 gap-4 my-8">
       <Card
         title="Total Visits"
         helperText="All time Form Visits"
