@@ -54,8 +54,12 @@ const CreateFormBtn = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant={"outline"} className="w-[300px] h-[170px]">
-          <Plus className="text-primary w-11 h-11" />
+        <Button
+          variant={"outline"}
+          className="border-dashed border-primary w-full h-full"
+        >
+          {/* className="w-[300px] h-[170px]" */}
+          <Plus className="text-primary w-12 h-12" />
         </Button>
       </DialogTrigger>
       <DialogContent>

@@ -1,5 +1,6 @@
 import CardWrapper from "@/components/cards/card-wrapper";
 import CreateFormBtn from "@/components/create-form-btn";
+import CreatedForms from "@/components/created-forms";
 import { Separator } from "@/components/ui/separator";
 import React, { Suspense } from "react";
 
@@ -14,8 +15,9 @@ const Page = () => {
         Your Forms
       </h2>
       <Separator className="my-4" />
-      <div className="grid grid-cols-4 xl:grid-cols-2 md:!grid-cols-1">
+      <div className="grid gap-4 grid-cols-4 xl:grid-cols-2 md:!grid-cols-1">
         <CreateFormBtn />
+        <CreatedForms />
       </div>
     </div>
   );

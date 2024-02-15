@@ -15,8 +15,9 @@ model Form {
   userId String
 
   name        String
-  description String @default("")
-  content     String @default("[]")
+  description String  @default("")
+  content     String  @default("[]")
+  published   Boolean @default(false)
 
   visits      Int @default(0)
   submissions Int @default(0)
