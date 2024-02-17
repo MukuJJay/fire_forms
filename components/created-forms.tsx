@@ -25,7 +25,7 @@ const CreatedForms = async () => {
           {!form?.published && <Badge>Draft</Badge>}
         </CardTitle>
         <CardDescription className="flex items-center justify-between">
-          {formatDistance(form?.createdAt, Date.now())}
+          {formatDistance(form?.createdAt, Date.now())} ago
           <span className="flex gap-1 items-center">
             <EyeIcon className="w-4 h-4" />
             {form?.visits}
@@ -39,10 +39,10 @@ const CreatedForms = async () => {
       </CardContent>
       <CardFooter>
         {form?.published && (
-          <Button className="w-full" variant={"outline"}>
+          <Button className="w-full p-0" variant={"outline"}>
             <Link
               href={`forms/${form.id}`}
-              className="flex justify-center gap-3 w-full"
+              className="flex justify-center items-center gap-3 w-full"
             >
               View Submissions
               <BookOpenText className="w-5 h-5" />
@@ -50,10 +50,10 @@ const CreatedForms = async () => {
           </Button>
         )}
         {!form?.published && (
-          <Button className="w-full" variant={"outline"}>
+          <Button className="w-full p-0" variant={"outline"}>
             <Link
               href={`builder/${form.id}`}
-              className="flex justify-center gap-3 w-full"
+              className="flex justify-center items-center gap-3 w-full h-full"
             >
               Edit Form
               <BookOpen className="w-5 h-5" />

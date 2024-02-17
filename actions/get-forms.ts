@@ -24,3 +24,23 @@ export const getForms = async () => {
 
   return forms;
 };
+
+export const getFormById = async (id: string) => {
+  const user = await currentUser();
+  if (!user) {
+    throw new Error("User not found!");
+  }
+
+  const form = await db.form.findUnique({
+    where: {
+      id,
+      userId: user.id,
+    },
+  });
+
+  if (!form) {
+    throw new Error("Form not found!");
+  }
+
+  return form;
+};

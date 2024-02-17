@@ -29,19 +29,24 @@ import {
 } from "@/interfaces/form-schema";
 import { createForm } from "@/actions/create-form";
 import { Loader2, Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const CreateFormBtn = () => {
+  const router = useRouter();
+
   const form = useForm<createFormSchemaType>({
     resolver: zodResolver(createFormSchema),
   });
 
   const onSubmit = async (values: createFormSchemaType) => {
     try {
-      await createForm(values);
+      const formId = await createForm(values);
       toast({
         title: "Form created successfully!",
         duration: 1800,
       });
+
+      router.push(`/builder/${formId}`);
     } catch (error) {
       toast({
         variant: "destructive",
