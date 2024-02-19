@@ -10,7 +10,7 @@ const TextField: FormElement = {
     type,
     extraAttributes: {
       label: "Text Field",
-      placeholder: "Enter Text",
+      placeholder: "Add Placeholder",
       helperText: "Helper Text",
       required: false,
     },

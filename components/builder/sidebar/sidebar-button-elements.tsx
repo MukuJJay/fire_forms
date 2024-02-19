@@ -3,7 +3,7 @@ import SideBarButtonElement from "./sidebar-button-element";
 
 const SideBarButtonElements = () => {
   return (
-    <div className="flex">
+    <div className="flex p-4">
       <SideBarButtonElement formElement={formElements.TextField} />
     </div>
   );

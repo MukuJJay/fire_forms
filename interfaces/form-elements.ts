@@ -2,7 +2,7 @@ import TextField from "@/components/fields/text-field";
 
 export type ElementType = "TextField";
 
-interface FormElementInstance {
+export interface FormElementInstance {
   id: string;
   type: ElementType;
   extraAttributes?: Record<string, any>;
