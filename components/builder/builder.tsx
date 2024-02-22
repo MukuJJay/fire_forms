@@ -11,6 +11,9 @@ import {
 import SideBarButtonElements from "./sidebar/sidebar-button-elements";
 import DragOverlayWrapper from "./drag-overlay-wrapper";
 import Designer from "./desginer";
+import { useContext } from "react";
+import { DesignerContext } from "@/context/designer-context";
+import PropertiesForm from "./sidebar/properties-form";
 
 const Builder = ({ form }: { form: Form }) => {
   const mouseSensor = useSensor(MouseSensor, {
@@ -28,6 +31,8 @@ const Builder = ({ form }: { form: Form }) => {
 
   const sensors = useSensors(mouseSensor, touchSensor);
 
+  const context = useContext(DesignerContext);
+
   return (
     <DndContext sensors={sensors}>
       <div className="w-full h-full flex justify-between">
@@ -35,7 +40,8 @@ const Builder = ({ form }: { form: Form }) => {
           <Designer />
         </div>
         <aside className="h-full w-[30%] bg-background">
-          <SideBarButtonElements />
+          {!context?.selectedElement && <SideBarButtonElements />}
+          {context?.selectedElement && <PropertiesForm />}
         </aside>
       </div>
       <DragOverlayWrapper />

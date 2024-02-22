@@ -1,4 +1,4 @@
-import TextField from "@/components/fields/text-field";
+import TextField from "@/components/fields/text-field/text-field";
 
 export type ElementType = "TextField";
 
@@ -18,9 +18,9 @@ export interface FormElement {
     label: string;
   };
 
-  designerComponent: React.FC;
+  designerComponent: React.FC<{ instance: FormElementInstance }>;
   formComponent: React.FC;
-  propertiesComponent: React.FC;
+  propertiesComponent: React.FC<{ instance: FormElementInstance }>;
 }
 
 type FormElementsType = {

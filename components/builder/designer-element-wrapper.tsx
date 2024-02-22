@@ -53,7 +53,7 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
         <div className="w-full h-[7px] bg-primary rounded-b-md absolute bottom-0 left-0" />
       )}
 
-      <DesignerElement />
+      <DesignerElement instance={element} />
 
       <div className="hidden group-hover:flex justify-center items-center absolute top-0 left-0 w-full h-full">
         <p className="text-muted-foreground animate-pulse">
@@ -61,7 +61,10 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
         </p>
         <button
           className="hover:bg-primary flex justify-center items-center w-12 h-full absolute top-0 right-0 rounded-r-md bg-primary/80"
-          onClick={() => context?.removeElement(element.id)}
+          onClick={(e) => {
+            e.stopPropagation();
+            context?.removeElement(element.id);
+          }}
         >
           <Trash2 className="w-6 h-6 text-white" />
         </button>

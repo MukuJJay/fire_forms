@@ -46,6 +46,7 @@ const Designer = () => {
         isOver && "ring-2 ring-primary/60"
       )}
       ref={setNodeRef}
+      onClick={() => context?.setSelectedElement(null)}
     >
       {!isOver && context?.elements.length === 0 && (
         <p className="flex-grow flex items-center justify-center text-3xl text-slate-500">
@@ -56,7 +57,16 @@ const Designer = () => {
         <div className="bg-accent w-full h-[120px] rounded-md"></div>
       )}
       {context?.elements.map((element) => (
-        <div className="w-full h-[120px]" id={element.id}>
+        <div
+          className="w-full h-[120px]"
+          key={element.id}
+          onClick={(e) => {
+            e.stopPropagation();
+            context?.setSelectedElement((prev) => {
+              return { ...element };
+            });
+          }}
+        >
           <DesignerElementWrapper element={element} />
         </div>
       ))}
