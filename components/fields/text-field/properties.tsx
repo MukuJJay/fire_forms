@@ -55,7 +55,7 @@ const PropertiesComponent = ({
 
   return (
     <Form {...form}>
-      <form onBlur={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onBlur={form.handleSubmit(onSubmit)} className="space-y-4 ">
         <FormField
           control={form.control}
           name="label"
@@ -114,7 +114,7 @@ const PropertiesComponent = ({
           control={form.control}
           name="required"
           render={({ field }) => (
-            <FormItem className="flex justify-between items-center ">
+            <FormItem className="flex justify-between items-center">
               <div>
                 <FormLabel>Required</FormLabel>
                 <FormDescription>
@@ -124,10 +124,12 @@ const PropertiesComponent = ({
               </div>
 
               <FormControl>
-                <Switch
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
+                <div onClick={form.handleSubmit(onSubmit)}>
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>

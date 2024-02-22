@@ -22,7 +22,10 @@ const PropertiesForm = () => {
           onClick={() => context?.setSelectedElement(null)}
         />
       </div>
-      <PropertiesComponent instance={context?.selectedElement} />
+      <PropertiesComponent
+        instance={context?.selectedElement}
+        key={context?.selectedElement.id}
+      />
     </div>
   );
 };
