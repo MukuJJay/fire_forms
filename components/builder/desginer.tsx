@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
+import DesignerElementWrapper from "./designer-element-wrapper";
 
 const Designer = () => {
   const { isOver, setNodeRef } = useDroppable({
@@ -41,7 +42,7 @@ const Designer = () => {
   return (
     <div
       className={cn(
-        "flex w-[90%] h-[95%] max-h-[95%] bg-background rounded-md p-4 overflow-y-auto",
+        "flex flex-col gap-3 w-[90%] h-[95%] max-h-[700px] bg-background rounded-md p-4 overflow-y-auto scrollbar scrollbar-w-1 scrollbar-thumb-zinc-700 scrollbar-thumb-rounded-sm",
         isOver && "ring-2 ring-primary/60"
       )}
       ref={setNodeRef}
@@ -51,11 +52,15 @@ const Designer = () => {
           Drop here
         </p>
       )}
-      {isOver && <div className="bg-accent w-full h-[120px] rounded-md"></div>}
-      {context?.elements.map((element) => JSON.stringify(element))}
-      <br />
+      {isOver && context?.elements.length === 0 && (
+        <div className="bg-accent w-full h-[120px] rounded-md"></div>
+      )}
+      {context?.elements.map((element) => (
+        <div className="w-full h-[120px]" id={element.id}>
+          <DesignerElementWrapper element={element} />
+        </div>
+      ))}
     </div>
   );
 };
-
 export default Designer;

@@ -16,6 +16,7 @@ const DragOverlayWrapper = () => {
   useDndMonitor({
     onDragStart: (event: DragStartEvent) => {
       setDraggedItem(event.active);
+      console.log(event, "=============");
     },
     onDragCancel(event: DragCancelEvent) {
       setDraggedItem(null);
@@ -30,11 +31,27 @@ const DragOverlayWrapper = () => {
   }
 
   const type: ElementType = draggedItem?.data?.current?.type;
-  const node = (
-    <SideBarButtonElementDraggingOverlay formElement={formElements[type]} />
-  );
 
-  return <DragOverlay>{node}</DragOverlay>;
+  if (draggedItem?.data?.current?.isDesignerDragButtonElement) {
+    const node = (
+      <SideBarButtonElementDraggingOverlay formElement={formElements[type]} />
+    );
+    return <DragOverlay>{node}</DragOverlay>;
+  }
+
+  if (draggedItem?.data?.current?.isdraggableDesignerElement) {
+    const DesignerElement = formElements[type].designerComponent;
+
+    const node = (
+      <div className="cursor-grabbing w-full h-[120px] bg-accent/80 px-4 flex items-center rounded-md pointer-events-none">
+        <DesignerElement />
+      </div>
+    );
+
+    return <DragOverlay>{node}</DragOverlay>;
+  }
+
+  return null;
 };
 
 export default DragOverlayWrapper;

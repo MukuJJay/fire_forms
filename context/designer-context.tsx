@@ -6,6 +6,7 @@ import { createContext, useState } from "react";
 export type DesignerContextType = {
   elements: FormElementInstance[];
   addElement: (element: FormElementInstance) => void;
+  removeElement: (elementId: string) => void;
 };
 
 export const DesignerContext = createContext<DesignerContextType | null>(null);
@@ -25,8 +26,12 @@ export const DesignerContextProvider = ({
     }
   };
 
+  const removeElement = (elementId: string) => {
+    setElements((prev) => prev.filter((elem) => elem.id !== elementId));
+  };
+
   return (
-    <DesignerContext.Provider value={{ elements, addElement }}>
+    <DesignerContext.Provider value={{ elements, addElement, removeElement }}>
       {children}
     </DesignerContext.Provider>
   );
