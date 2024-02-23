@@ -8,6 +8,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Badge } from "../ui/badge";
+import Publish from "./builder-navbar-buttons/publish";
 
 const BuilderNavbar = ({ form }: { form: Form }) => {
   const [mounted, setMounted] = useState(false);
@@ -35,9 +36,7 @@ const BuilderNavbar = ({ form }: { form: Form }) => {
       <div className="flex items-center gap-4 ">
         <Preview />
         <Save formId={form.id} />
-        <Button className="flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-primary">
-          Publish
-        </Button>
+        <Publish />
       </div>
     </nav>
   );

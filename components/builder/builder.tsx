@@ -10,7 +10,7 @@ import {
 } from "@dnd-kit/core";
 import SideBarButtonElements from "./sidebar/sidebar-button-elements";
 import DragOverlayWrapper from "./drag-overlay-wrapper";
-import Designer from "./desginer";
+import Designer from "./designer";
 import { useContext } from "react";
 import { DesignerContext } from "@/context/designer-context";
 import PropertiesForm from "./sidebar/properties-form";
