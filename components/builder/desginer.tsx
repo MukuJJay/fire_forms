@@ -24,18 +24,85 @@ const Designer = () => {
         return;
       }
 
-      if (
-        !event?.active?.data?.current?.isDesignerDragButtonElement &&
-        !event?.over?.data?.current?.isDesignerDropArea
-      ) {
-        return;
+      //for first dropping scenerio
+
+      const isDropppingDesignerBtnElementOverDesignerDropArea =
+        event?.active?.data?.current?.isDesignerDragButtonElement &&
+        event?.over?.data?.current?.isDesignerDropArea;
+
+      if (isDropppingDesignerBtnElementOverDesignerDropArea) {
+        const type: ElementType = event?.active?.data?.current?.type;
+
+        const newElement = formElements[type].construct(uuidv4());
+
+        context?.addElement(newElement);
       }
 
-      const type: ElementType = event?.active?.data?.current?.type;
+      //for second dropping scenerio
+      const isDroppingOverTopHalfDesignerElement =
+        event?.over?.data?.current?.isTopHalfDesignerElement;
+      const isDroppingOverBottomHalfDesignerElement =
+        event?.over?.data?.current?.isBottomHalfDesignerElement;
 
-      const newElement = formElements[type].construct(uuidv4());
+      const isDropppingDesignerBtnElementOverDesignerElement =
+        event?.active?.data?.current?.isDesignerDragButtonElement &&
+        (isDroppingOverTopHalfDesignerElement ||
+          isDroppingOverBottomHalfDesignerElement);
 
-      context?.addElement(newElement);
+      if (isDropppingDesignerBtnElementOverDesignerElement) {
+        const type: ElementType = event?.active?.data?.current?.type;
+
+        const newElement = formElements[type].construct(uuidv4());
+
+        const designerElementId = event?.over?.data?.current?.elementId;
+
+        const designerElementIndex = context?.elements.findIndex(
+          (elem) => elem.id === designerElementId
+        );
+
+        if (!designerElementIndex && designerElementIndex !== 0) return;
+
+        if (isDroppingOverTopHalfDesignerElement) {
+          context?.addElementWithIndex(designerElementIndex, newElement);
+        } else if (isDroppingOverBottomHalfDesignerElement) {
+          context?.addElementWithIndex(designerElementIndex + 1, newElement);
+        }
+      }
+
+      //for third dropping scenerio
+      const isSortingDesignerElement =
+        event?.active?.data?.current?.isdraggableDesignerElement &&
+        (isDroppingOverTopHalfDesignerElement ||
+          isDroppingOverBottomHalfDesignerElement);
+
+      if (isSortingDesignerElement) {
+        const dropDesignerElementId = event?.over?.data?.current?.elementId;
+        const dragDesignerElementId = event?.active?.data?.current?.elementId;
+
+        const dropDesignerElementIndex = context?.elements.findIndex(
+          (elem) => elem.id === dropDesignerElementId
+        );
+        if (!dropDesignerElementIndex && dropDesignerElementIndex !== 0) return;
+
+        const dragDesignerElement = context?.elements.find(
+          (elem) => elem.id === dragDesignerElementId
+        );
+        if (!dragDesignerElement) return;
+
+        context?.removeElement(dragDesignerElementId);
+
+        if (isDroppingOverTopHalfDesignerElement) {
+          context?.addElementWithIndex(
+            dropDesignerElementIndex,
+            dragDesignerElement
+          );
+        } else if (isDroppingOverBottomHalfDesignerElement) {
+          context?.addElementWithIndex(
+            dropDesignerElementIndex + 1,
+            dragDesignerElement
+          );
+        }
+      }
     },
   });
 
@@ -62,9 +129,7 @@ const Designer = () => {
           key={element.id}
           onClick={(e) => {
             e.stopPropagation();
-            context?.setSelectedElement((prev) => {
-              return { ...element };
-            });
+            context?.setSelectedElement(element);
           }}
         >
           <DesignerElementWrapper element={element} />

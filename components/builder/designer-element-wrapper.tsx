@@ -12,9 +12,17 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
 
   const topHalf = useDroppable({
     id: `${element.id}-top-half`,
+    data: {
+      elementId: element.id,
+      isTopHalfDesignerElement: true,
+    },
   });
   const bottomHalf = useDroppable({
     id: `${element.id}-bottom-half`,
+    data: {
+      elementId: element.id,
+      isBottomHalfDesignerElement: true,
+    },
   });
 
   const draggable = useDraggable({

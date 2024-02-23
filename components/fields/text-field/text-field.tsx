@@ -1,6 +1,6 @@
 import { ElementType, FormElement } from "@/interfaces/form-elements";
 import { FileType } from "lucide-react";
-import DesignerComponent from "./designer";
+import { DesignerComponent, PreviewComponent } from "./designer-preview";
 import PropertiesComponent from "./properties";
 
 const type: ElementType = "TextField";
@@ -28,7 +28,7 @@ const TextField: FormElement = {
   },
 
   designerComponent: DesignerComponent,
-  formComponent: () => <div>Form Component</div>,
+  previewComponent: PreviewComponent,
   propertiesComponent: PropertiesComponent,
 };
 

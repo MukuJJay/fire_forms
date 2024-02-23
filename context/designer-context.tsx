@@ -6,6 +6,7 @@ import { Dispatch, SetStateAction, createContext, useState } from "react";
 export type DesignerContextType = {
   elements: FormElementInstance[];
   addElement: (element: FormElementInstance) => void;
+  addElementWithIndex: (index: number, element: FormElementInstance) => void;
   removeElement: (elementId: string) => void;
   selectedElement: FormElementInstance | null;
   setSelectedElement: Dispatch<SetStateAction<FormElementInstance | null>>;
@@ -24,11 +25,19 @@ export const DesignerContextProvider = ({
     useState<FormElementInstance | null>(null);
 
   const addElement = (element: FormElementInstance) => {
-    if (elements) {
-      setElements([...elements, element]);
-    } else {
-      setElements([element]);
+    setElements((prev) => [...prev, element]);
+  };
+
+  const addElementWithIndex = (index: number, element: FormElementInstance) => {
+    if (!elements) {
+      return;
     }
+
+    setElements((prev) => {
+      const prevCopy = prev.slice();
+      prevCopy.splice(index, 0, element);
+      return prevCopy;
+    });
   };
 
   const updateElement = (element: FormElementInstance) => {
@@ -42,6 +51,7 @@ export const DesignerContextProvider = ({
 
   const removeElement = (elementId: string) => {
     setElements((prev) => prev.filter((elem) => elem.id !== elementId));
+    setSelectedElement(null);
   };
 
   return (
@@ -49,6 +59,7 @@ export const DesignerContextProvider = ({
       value={{
         elements,
         addElement,
+        addElementWithIndex,
         removeElement,
         selectedElement,
         setSelectedElement,
