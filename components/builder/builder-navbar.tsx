@@ -1,7 +1,8 @@
 import { Form } from "@prisma/client";
 import { Button } from "@/components/ui/button";
-import { EyeIcon, Save, Upload } from "lucide-react";
+import { EyeIcon, Upload } from "lucide-react";
 import Preview from "./builder-navbar-buttons/preview";
+import Save from "./builder-navbar-buttons/save";
 
 const BuilderNavbar = ({ form }: { form: Form }) => {
   return (
@@ -9,9 +10,7 @@ const BuilderNavbar = ({ form }: { form: Form }) => {
       <p>Form Name : {form?.name}</p>
       <div className="flex items-center gap-4 ">
         <Preview />
-        <Button className="flex items-center gap-2" variant={"outline"}>
-          <Save /> Save
-        </Button>
+        <Save formId={form.id} />
         <Button className="flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-primary">
           <Upload /> Publish
         </Button>
