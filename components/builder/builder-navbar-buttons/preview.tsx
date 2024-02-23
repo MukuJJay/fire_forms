@@ -20,16 +20,14 @@ const Preview = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button className="flex items-center gap-2" variant={"outline"}>
-          <EyeIcon /> Preview
+          <EyeIcon className="w-4 h-4" /> Preview
         </Button>
       </DialogTrigger>
       <DialogContent className="w-screen h-screen max-h-screen max-w-full p-8">
         <div className="w-full h-full bg-accent bg-[url(/jigsaw.svg)] dark:bg-[url(/jigsaw-dark.svg)] rounded-xl flex justify-center items-center">
           <div className="mdm:h-[97%] mdm:w-[700px] md:w-full md:h-full  bg-background rounded-md">
             {context?.elements.map((element) => (
-              <>
-                <FormComponent instance={element} />
-              </>
+              <FormComponent instance={element} key={element.id} />
             ))}
           </div>
         </div>

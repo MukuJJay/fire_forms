@@ -37,7 +37,7 @@ const Builder = ({ form }: { form: Form }) => {
     <DndContext sensors={sensors}>
       <div className="w-full h-full flex justify-between">
         <div className="w-[70%] h-full flex justify-center items-center">
-          <Designer />
+          <Designer form={form} />
         </div>
         <aside className="h-full w-[30%] bg-background">
           {!context?.selectedElement && <SideBarButtonElements />}

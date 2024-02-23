@@ -4,11 +4,12 @@ import { DesignerContext } from "@/context/designer-context";
 import { ElementType, formElements } from "@/interfaces/form-elements";
 import { cn } from "@/lib/utils";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import DesignerElementWrapper from "./designer-element-wrapper";
+import { Form } from "@prisma/client";
 
-const Designer = () => {
+const Designer = ({ form }: { form: Form }) => {
   const { isOver, setNodeRef } = useDroppable({
     id: "designer-drop-area",
     data: {
@@ -17,6 +18,13 @@ const Designer = () => {
   });
 
   const context = useContext(DesignerContext);
+
+  useEffect(() => {
+    const content = JSON.parse(form.content);
+
+    context?.setElements(content);
+    context?.setSelectedElement(null);
+  }, []);
 
   useDndMonitor({
     onDragEnd(event) {
