@@ -9,7 +9,7 @@ const Page = async ({ params }: { params: { formId: string } }) => {
   const form = await getFormById(formId);
 
   if (form.published) {
-    return <PublishCard />;
+    return <PublishCard form={form} />;
   }
 
   return (

@@ -41,7 +41,7 @@ const CreatedForms = async () => {
         {form?.published && (
           <Button className="w-full p-0" variant={"outline"}>
             <Link
-              href={`forms/${form.id}`}
+              href={`form/${form.id}`}
               className="flex justify-center items-center gap-3 w-full"
             >
               View Submissions
