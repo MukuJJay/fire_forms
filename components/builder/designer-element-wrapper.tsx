@@ -40,7 +40,7 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
 
   return (
     <div
-      className="hover:bg-accent/50 group cursor-grab w-full h-[120px] bg-accent px-4 flex items-center rounded-md relative"
+      className="hover:bg-accent/50 group cursor-grab w-full h-[120px] bg-accent/70 px-4 flex items-center rounded-md relative"
       ref={draggable.setNodeRef}
       {...draggable.listeners}
       {...draggable.attributes}

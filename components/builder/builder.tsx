@@ -39,7 +39,7 @@ const Builder = ({ form }: { form: Form }) => {
         <div className="w-[70%] h-full flex justify-center items-center">
           <Designer form={form} />
         </div>
-        <aside className="h-full w-[30%] bg-background">
+        <aside className="h-full w-[30%] bg-transparent">
           {!context?.selectedElement && <SideBarButtonElements />}
           {context?.selectedElement && <PropertiesForm />}
         </aside>
