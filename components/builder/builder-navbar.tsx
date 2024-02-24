@@ -36,7 +36,7 @@ const BuilderNavbar = ({ form }: { form: Form }) => {
       <div className="flex items-center gap-4 ">
         <Preview />
         <Save formId={form.id} />
-        <Publish />
+        <Publish formId={form.id} />
       </div>
     </nav>
   );

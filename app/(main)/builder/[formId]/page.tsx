@@ -1,11 +1,16 @@
 import { getFormById } from "@/actions/get-forms";
 import Builder from "@/components/builder/builder";
 import BuilderNavbar from "@/components/builder/builder-navbar";
+import PublishCard from "@/components/builder/publish-card";
 
 const Page = async ({ params }: { params: { formId: string } }) => {
   const { formId } = params;
 
   const form = await getFormById(formId);
+
+  if (form.published) {
+    return <PublishCard />;
+  }
 
   return (
     <main className="w-full h-full flex flex-col">
