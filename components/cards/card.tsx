@@ -1,4 +1,4 @@
-import { Eye } from "lucide-react";
+import { ArrowUpFromLine, BarChart4, Eye, ScatterChart } from "lucide-react";
 import {
   Card as CardWrapper,
   CardContent,
@@ -18,9 +18,9 @@ interface CardProps {
 
 const IconMap = {
   visits: <Eye className="w-6 h-6 text-primary" />,
-  submissions: <Eye className="w-6 h-6 text-primary" />,
-  submissionRate: <Eye className="w-6 h-6 text-primary" />,
-  bounceRate: <Eye className="w-6 h-6 text-primary" />,
+  submissions: <ArrowUpFromLine className="w-6 h-6 text-primary" />,
+  submissionRate: <BarChart4 className="w-6 h-6 text-primary" />,
+  bounceRate: <ScatterChart className="w-6 h-6 text-primary" />,
 };
 
 function Card({ title, helperText, value, icon, loading }: CardProps) {

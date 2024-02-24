@@ -33,3 +33,28 @@ export const getUserStats = async () => {
 
   return calc_string;
 };
+
+export const getSingleFormStatsById = async (formId: string) => {
+  const user = await currentUser();
+  if (!user) {
+    throw new Error("User not found!");
+  }
+
+  const stats = await db.form.findUnique({
+    where: {
+      id: formId,
+      userId: user.id,
+    },
+  });
+
+  if (!stats) {
+    throw new Error("Form not found!");
+  }
+
+  const visits = stats.visits;
+  const submissions = stats.submissions;
+  const submissionRate = (visits / submissions) * 100 || 0;
+  const bounceRate = visits > 0 ? 100 - submissionRate : 0;
+
+  return { visits, submissions, submissionRate, bounceRate };
+};
