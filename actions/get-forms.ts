@@ -44,3 +44,21 @@ export const getFormById = async (id: string) => {
 
   return form;
 };
+
+export const getFormByShareId = async (shareId: string) => {
+  const form = await db.form.findUnique({
+    where: {
+      shareURL: shareId,
+    },
+    select: {
+      content: true,
+      published: true,
+    },
+  });
+
+  if (!form) {
+    throw new Error("Form not found!");
+  }
+
+  return form;
+};

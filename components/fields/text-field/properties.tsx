@@ -28,13 +28,16 @@ const PropertiesComponent = ({
 
   const context = useContext(DesignerContext);
 
-  const { label, placeholder, helperText, required } = instance.extraAttributes;
+  const { label, placeholder, helperText, required, min, max } =
+    instance.extraAttributes;
 
   const formSchema = z.object({
     label: z.string().min(2).max(50),
     placeholder: z.string().max(100),
     helperText: z.string().max(200),
     required: z.boolean(),
+    min: z.coerce.number().gte(0).lte(5000).optional(),
+    max: z.coerce.number().lte(5000).gte(1).optional(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -45,6 +48,8 @@ const PropertiesComponent = ({
       placeholder,
       helperText,
       required,
+      min,
+      max,
     },
   });
 
@@ -130,6 +135,44 @@ const PropertiesComponent = ({
                     onCheckedChange={field.onChange}
                   />
                 </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="min"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Minimum Characters</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  type="number"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") e.currentTarget.blur();
+                  }}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="max"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Maximum Characters</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  type="number"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") e.currentTarget.blur();
+                  }}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

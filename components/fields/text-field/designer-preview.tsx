@@ -2,6 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FormElementInstance } from "@/interfaces/form-elements";
 import { extraAttributesType } from "./text-field";
+import { Badge } from "@/components/ui/badge";
 
 export const DesignerComponent = ({
   instance,
@@ -10,14 +11,21 @@ export const DesignerComponent = ({
 }) => {
   const extraAttributes = instance.extraAttributes as extraAttributesType;
 
-  const { label, placeholder, helperText, required } = extraAttributes;
+  const { label, placeholder, helperText, required, min, max } =
+    extraAttributes;
 
   return (
     <div className="flex flex-col gap-2 w-full">
-      <Label>
-        {label}
-        {required && <sup>*</sup>}
-      </Label>
+      <div className="flex items-center justify-between">
+        <Label>
+          {label}
+          {required && <sup>*</sup>}
+        </Label>
+        <div className="flex gap-1 items-center">
+          <Badge variant={"indigo"}>Min : {min}</Badge>
+          <Badge variant={"indigo"}>Max : {max}</Badge>
+        </div>
+      </div>
       <Input placeholder={placeholder} disabled />
       {helperText && (
         <span className="text-xs text-muted-foreground">{helperText}</span>
