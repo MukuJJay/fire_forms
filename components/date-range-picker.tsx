@@ -18,8 +18,8 @@ export function DatePickerWithRange({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
   const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 20),
+    from: addDays(Date.now(), -20),
+    to: new Date(Date.now()),
   });
 
   return (
@@ -38,25 +38,25 @@ export function DatePickerWithRange({
             {date?.from ? (
               date.to ? (
                 <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
+                  {format(date.from, "dd-MMM-yyyy")} -{" "}
+                  {format(date.to, "dd-MMM-yyyy")}
                 </>
               ) : (
-                format(date.from, "LLL dd, y")
+                format(date.from, "dd-MMM-yyyy")
               )
             ) : (
               <span>Pick a date</span>
             )}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-0 flex flex-row" align="center">
+        <PopoverContent className="p-0" align="center">
           <Calendar
             initialFocus
             mode="range"
             defaultMonth={date?.from}
             selected={date}
             onSelect={setDate}
-            numberOfMonths={2}
+            // numberOfMonths={2}
           />
         </PopoverContent>
       </Popover>

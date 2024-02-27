@@ -61,10 +61,14 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="w-full">
+    <div className="w-full p-10 flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <span className="text-muted-foreground">
+          Filter data between date range :{" "}
+        </span>
+        <DatePickerWithRange />
+      </div>
       <div className="rounded-md border w-full overflow-x-auto">
-        {/* scrollbar scrollbar-w-1 scrollbar-thumb-zinc-700 scrollbar-thumb-rounded-sm */}
-        {/* <DatePickerWithRange /> */}
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
