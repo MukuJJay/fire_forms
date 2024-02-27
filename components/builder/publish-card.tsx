@@ -80,7 +80,7 @@ export const VistsFormBtn = ({ shareId }: { shareId: string }) => {
   const shareUrl = window.location.origin + "/submit/" + shareId;
   return (
     <Link
-      target="blank"
+      target="_blank"
       href={shareUrl}
       className="flex p-2 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 gap-2"
     >

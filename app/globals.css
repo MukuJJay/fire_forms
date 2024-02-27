@@ -53,7 +53,7 @@
  
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border scrollbar scrollbar-w-1 scrollbar-thumb-zinc-700 scrollbar-thumb-rounded-sm;
   }
   body {
     @apply bg-background text-foreground;

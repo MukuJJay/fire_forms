@@ -25,7 +25,7 @@ export const getForms = async () => {
   return forms;
 };
 
-export const getFormById = async (id: string) => {
+export const getFormById = async (id: string, formSubmissions?: boolean) => {
   const user = await currentUser();
   if (!user) {
     throw new Error("User not found!");
@@ -35,6 +35,9 @@ export const getFormById = async (id: string) => {
     where: {
       id,
       userId: user.id,
+    },
+    include: {
+      FormSubmissions: formSubmissions,
     },
   });
 
