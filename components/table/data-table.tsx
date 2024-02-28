@@ -6,6 +6,8 @@ import {
   getCoreRowModel,
   useReactTable,
   getPaginationRowModel,
+  SortingState,
+  getSortedRowModel,
 } from "@tanstack/react-table";
 
 import {
@@ -20,6 +22,8 @@ import { FormElementInstance } from "@/interfaces/form-elements";
 import { Button } from "../ui/button";
 import { DatePickerWithRange } from "../date-range-picker";
 import useDateRange from "@/hooks/use-date-range";
+import { useState } from "react";
+import { ArrowUpDown } from "lucide-react";
 
 interface DataTableProps<TData> {
   contentStr: string;
@@ -40,7 +44,28 @@ function mapColumn<TData, TValue>(contentStr: string) {
   }
 
   const modColumns = [
-    { accessorKey: "createdAt", header: "Submition Date" },
+    {
+      accessorKey: "createdAt",
+      header: ({ column }: { column: any }) => {
+        return (
+          <Button
+            variant="ghost"
+            className="text-center w-full flex"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            Submission Date
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </Button>
+        );
+      },
+      cell: ({ row }: { row: any }) => {
+        return (
+          <div className="text-center font-medium">
+            {row.getValue("createdAt")}
+          </div>
+        );
+      },
+    },
     ...columns,
   ];
   return modColumns;
@@ -54,6 +79,8 @@ export function DataTable<TData, TValue>({
     contentStr
   );
 
+  const [sorting, setSorting] = useState<SortingState>([]);
+
   const dateRange = useDateRange();
 
   const table = useReactTable({
@@ -61,11 +88,16 @@ export function DataTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
+    state: {
+      sorting,
+    },
   });
 
   return (
     <div className="w-full p-10 flex flex-col gap-2">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 flex-wrap">
         <span className="text-muted-foreground">
           Filter data between date range :{" "}
         </span>
