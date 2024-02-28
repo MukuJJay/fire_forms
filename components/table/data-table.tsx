@@ -19,11 +19,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { FormElementInstance } from "@/interfaces/form-elements";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { DatePickerWithRange } from "../date-range-picker";
 import useDateRange from "@/hooks/use-date-range";
 import { useState } from "react";
 import { ArrowUpDown } from "lucide-react";
+import { Tooltip } from "@/components/tooltip";
 
 interface DataTableProps<TData> {
   contentStr: string;
@@ -39,7 +40,20 @@ function mapColumn<TData, TValue>(contentStr: string) {
     const column: ColumnDef<TData, TValue> = { accessorKey: "", header: "" };
 
     column["accessorKey"] = instance.id;
-    column["header"] = obj?.label;
+    column["header"] = ({ column }: { column: any }) => {
+      return <div className="text-center">{obj?.label}</div>;
+    };
+    column["cell"] = ({ row }: { row: any }) => {
+      const value = row.getValue(column["accessorKey"]);
+      console.log(row);
+      return (
+        <Tooltip label={value} delayDuration={400}>
+          <div className="text-center">
+            {value.length > 30 ? value.slice(0, 30) + "..." : value}
+          </div>
+        </Tooltip>
+      );
+    };
     columns.push(column);
   }
 
