@@ -1,8 +1,11 @@
+import { ElementType } from "@/interfaces/form-elements";
 import { create } from "zustand";
 
 export interface valueType {
   label: string;
   value: any;
+  type: ElementType;
+  extraAttributes: Record<string, any>;
 }
 
 type Store = {

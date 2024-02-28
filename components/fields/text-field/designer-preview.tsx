@@ -53,7 +53,7 @@ export const PreviewComponent = ({
       </Label>
       <Input
         placeholder={placeholder}
-        readOnly={value ? true : false}
+        disabled={typeof value === "string" ? true : false}
         value={value}
       />
       {helperText && (

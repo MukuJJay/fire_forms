@@ -20,11 +20,11 @@ const DataTableWrapper = ({ form }: { form: FormWithSubmissions }) => {
 
   for (const submission of formSubmission) {
     const content = JSON.parse(submission.content);
-    const obj: Record<string, any> = { id: submission.id };
-
+    const obj: Record<string, any> = { id: submission.id, instance: {} };
     for (const key in content) {
-      const { value } = content[key];
+      const { value, type, extraAttributes } = content[key];
       obj[key] = value;
+      obj.instance[key] = { id: key, type, extraAttributes };
     }
 
     const creationDate = format(new Date(submission.createdAt), "dd-MMM-yyyy");

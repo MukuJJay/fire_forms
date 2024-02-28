@@ -40,7 +40,12 @@ const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
   };
 
   function valueConstruct() {
-    const valueObj: valueType = { label, value };
+    const valueObj: valueType = {
+      label,
+      value,
+      type: instance.type,
+      extraAttributes,
+    };
     setValues(instance.id, valueObj);
   }
 

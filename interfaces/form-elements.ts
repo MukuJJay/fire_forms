@@ -19,7 +19,7 @@ export interface FormElement {
   };
 
   designerComponent: React.FC<{ instance: FormElementInstance }>;
-  previewComponent: React.FC<{ instance: FormElementInstance }>;
+  previewComponent: React.FC<{ instance: FormElementInstance; value?: string }>;
   propertiesComponent: React.FC<{ instance: FormElementInstance }>;
   submitComponent: React.FC<{ instance: FormElementInstance }>;
 }
