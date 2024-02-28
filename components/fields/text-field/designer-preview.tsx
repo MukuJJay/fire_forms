@@ -36,8 +36,10 @@ export const DesignerComponent = ({
 
 export const PreviewComponent = ({
   instance,
+  value,
 }: {
   instance: FormElementInstance;
+  value?: string;
 }) => {
   const extraAttributes = instance.extraAttributes as extraAttributesType;
 
@@ -49,7 +51,11 @@ export const PreviewComponent = ({
         {label}
         {required && <sup>*</sup>}
       </Label>
-      <Input placeholder={placeholder} />
+      <Input
+        placeholder={placeholder}
+        readOnly={value ? true : false}
+        value={value}
+      />
       {helperText && (
         <span className="text-xs text-muted-foreground">{helperText}</span>
       )}

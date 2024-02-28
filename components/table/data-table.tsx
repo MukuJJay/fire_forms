@@ -25,6 +25,7 @@ import useDateRange from "@/hooks/use-date-range";
 import { useState } from "react";
 import { ArrowUpDown } from "lucide-react";
 import { Tooltip } from "@/components/tooltip";
+import ViewForm from "./view-form";
 
 interface DataTableProps<TData> {
   contentStr: string;
@@ -40,12 +41,11 @@ function mapColumn<TData, TValue>(contentStr: string) {
     const column: ColumnDef<TData, TValue> = { accessorKey: "", header: "" };
 
     column["accessorKey"] = instance.id;
-    column["header"] = ({ column }: { column: any }) => {
+    column["header"] = () => {
       return <div className="text-center">{obj?.label}</div>;
     };
     column["cell"] = ({ row }: { row: any }) => {
       const value = row.getValue(column["accessorKey"]);
-      console.log(row);
       return (
         <Tooltip label={value} delayDuration={400}>
           <div className="text-center">
@@ -58,6 +58,15 @@ function mapColumn<TData, TValue>(contentStr: string) {
   }
 
   const modColumns = [
+    {
+      accessorKey: "view",
+      header: () => {
+        return <div className="text-center min-w-[50px]">View</div>;
+      },
+      cell: ({ row }: { row: any }) => {
+        return <ViewForm row={row} />;
+      },
+    },
     {
       accessorKey: "createdAt",
       header: ({ column }: { column: any }) => {
