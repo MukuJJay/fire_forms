@@ -30,7 +30,7 @@ const ViewForm = ({ row }: { row: any }) => {
   return (
     <div className="w-full text-center">
       <Dialog>
-        <DialogTrigger>
+        <DialogTrigger asChild>
           <Button variant={"outline"}>
             <EyeIcon className="w-5 h-5" />
           </Button>
