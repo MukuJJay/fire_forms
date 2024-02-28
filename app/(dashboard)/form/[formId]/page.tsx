@@ -2,40 +2,12 @@ import { getFormById } from "@/actions/get-forms";
 import { getSingleFormStatsById } from "@/actions/stats";
 import { CopyUrl, VistsFormBtn } from "@/components/builder/publish-card";
 import Card from "@/components/cards/card";
-import { DataTable } from "@/components/table/data-table";
-import { FormSubmissions } from "@prisma/client";
-import { format } from "date-fns";
-
-async function getTableData(formSubmission: FormSubmissions[]) {
-  if (formSubmission.length === 0) {
-    return [];
-  }
-
-  const data = [];
-
-  for (const submission of formSubmission) {
-    const content = JSON.parse(submission.content);
-    const obj: Record<string, any> = { id: submission.id };
-
-    for (const key in content) {
-      const { value } = content[key];
-      obj[key] = value;
-    }
-
-    const creationDate = format(new Date(submission.createdAt), "dd-MMM-yyyy");
-
-    obj.createdAt = creationDate;
-    data.push(obj);
-  }
-
-  return data;
-}
+import DataTableWrapper from "@/components/table/data-table-wrapper";
 
 const Page = async ({ params }: { params: { formId: string } }) => {
   const { formId } = params;
-  const form = await getFormById(formId, true);
 
-  const tableData = await getTableData(form.FormSubmissions);
+  const form = await getFormById(formId, true);
 
   const { visits, submissions, submissionRate, bounceRate } =
     await getSingleFormStatsById(formId);
@@ -80,7 +52,7 @@ const Page = async ({ params }: { params: { formId: string } }) => {
           icon="bounceRate"
         />
       </div>
-      <DataTable contentStr={form.content} data={tableData} />
+      <DataTableWrapper form={form} />
     </main>
   );
 };

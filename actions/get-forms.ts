@@ -49,9 +49,14 @@ export const getFormById = async (id: string, formSubmissions?: boolean) => {
 };
 
 export const getFormByShareId = async (shareId: string) => {
-  const form = await db.form.findUnique({
+  const form = await db.form.update({
     where: {
       shareURL: shareId,
+    },
+    data: {
+      visits: {
+        increment: 1,
+      },
     },
     select: {
       content: true,

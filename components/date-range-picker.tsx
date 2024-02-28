@@ -13,6 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import useDateRange from "@/hooks/use-date-range";
 
 export function DatePickerWithRange({
   className,
@@ -21,6 +22,12 @@ export function DatePickerWithRange({
     from: addDays(Date.now(), -20),
     to: new Date(Date.now()),
   });
+
+  const dateRange = useDateRange();
+
+  React.useEffect(() => {
+    dateRange.setDate(date);
+  }, [date]);
 
   return (
     <div className={cn("grid gap-2", className)}>

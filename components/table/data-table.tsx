@@ -19,6 +19,7 @@ import {
 import { FormElementInstance } from "@/interfaces/form-elements";
 import { Button } from "../ui/button";
 import { DatePickerWithRange } from "../date-range-picker";
+import useDateRange from "@/hooks/use-date-range";
 
 interface DataTableProps<TData> {
   contentStr: string;
@@ -39,8 +40,8 @@ function mapColumn<TData, TValue>(contentStr: string) {
   }
 
   const modColumns = [
-    ...columns,
     { accessorKey: "createdAt", header: "Submition Date" },
+    ...columns,
   ];
   return modColumns;
 }
@@ -52,6 +53,8 @@ export function DataTable<TData, TValue>({
   const columns: ColumnDef<TData, TValue>[] = mapColumn<TData, TValue>(
     contentStr
   );
+
+  const dateRange = useDateRange();
 
   const table = useReactTable({
     data,
