@@ -3,7 +3,7 @@
 import { FormElementInstance, formElements } from "@/interfaces/form-elements";
 import { Button } from "@/components/ui/button";
 import useErrorCheck from "@/hooks/error-checker-zustand";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import {
   Dialog,
   DialogContent,
@@ -29,6 +29,7 @@ const SubmitFormWrapper = ({ form }: { form: FormProps }) => {
   const [pending, startTransition] = useTransition();
   const { shareId }: { shareId: string } = useParams();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const scrollIntoView = useRef(null);
 
   useEffect(() => {
     const locallySavedShareId = localStorage.getItem("submitted_forms_shareId");
@@ -61,6 +62,16 @@ const SubmitFormWrapper = ({ form }: { form: FormProps }) => {
     for (const key in errorObj) {
       if (errorObj[key] === true) {
         setOpenDialog(false);
+        if (scrollIntoView.current) {
+          const elementToScrollTo = (
+            scrollIntoView.current as HTMLElement
+          ).querySelector(`[data-key="${key}"]`);
+
+          if (elementToScrollTo) {
+            elementToScrollTo.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+
         return;
       }
     }
@@ -89,7 +100,10 @@ const SubmitFormWrapper = ({ form }: { form: FormProps }) => {
   };
 
   return (
-    <div className="max-w-[700px] bg-accent mx-auto scrollbar scrollbar-w-1 p-4 rounded-md shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)] flex flex-col gap-4">
+    <div
+      className="max-w-[700px] bg-accent mx-auto scrollbar scrollbar-w-1 p-4 rounded-md shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)] flex flex-col gap-4"
+      ref={scrollIntoView}
+    >
       {content.map((instance) => (
         <SubmitComponent instance={instance} key={instance.id} />
       ))}
@@ -124,7 +138,7 @@ const SubmitFormWrapper = ({ form }: { form: FormProps }) => {
                 className="flex items-center gap-1"
                 onClick={() => startTransition(onSubmit)}
               >
-                Submit{" "}
+                Submit
                 {pending ? (
                   <Loader className="w-5 h-5 animate-spin" />
                 ) : (
@@ -142,7 +156,11 @@ const SubmitFormWrapper = ({ form }: { form: FormProps }) => {
 const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
   const Component = formElements[instance.type].submitComponent;
 
-  return <Component instance={instance} />;
+  return (
+    <div data-key={instance.id}>
+      <Component instance={instance} />
+    </div>
+  );
 };
 
 export default SubmitFormWrapper;
