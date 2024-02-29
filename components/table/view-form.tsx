@@ -35,7 +35,7 @@ const ViewForm = ({ row }: { row: any }) => {
             <EyeIcon className="w-5 h-5" />
           </Button>
         </DialogTrigger>
-        <DialogContent className="overflow-y-auto">
+        <DialogContent className="overflow-y-auto max-h-[95%] rounded-md">
           {instanceIdArr.map((instanceId: string) => elementMapper(instanceId))}
         </DialogContent>
       </Dialog>
