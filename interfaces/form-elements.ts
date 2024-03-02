@@ -1,9 +1,11 @@
 import HeadingField from "@/components/fields/heading/heading";
+import NumberField from "@/components/fields/number-field/number-field";
 import ParagraphField from "@/components/fields/paragraph/paragraph";
 import SeparatorField from "@/components/fields/separator/separator";
 import SpacerField from "@/components/fields/spacer/spacer";
 import SubHeadingField from "@/components/fields/sub-heading/sub-heading";
 import TextField from "@/components/fields/text-field/text-field";
+import TextAreaField from "@/components/fields/textarea-field/textarea-field";
 
 export type ElementType =
   | "TextField"
@@ -11,7 +13,9 @@ export type ElementType =
   | "SubHeadingField"
   | "ParagraphField"
   | "SeparatorField"
-  | "SpacerField";
+  | "SpacerField"
+  | "NumberField"
+  | "TextAreaField";
 
 export interface FormElementInstance {
   id: string;
@@ -46,4 +50,6 @@ export const formElements: FormElementsType = {
   ParagraphField: ParagraphField,
   SeparatorField: SeparatorField,
   SpacerField: SpacerField,
+  NumberField: NumberField,
+  TextAreaField: TextAreaField,
 };

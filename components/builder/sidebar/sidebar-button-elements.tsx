@@ -7,8 +7,10 @@ const SideBarButtonElements = () => {
       <h3 className="text-muted-foreground font-bold text-center">
         Field Elements
       </h3>
-      <div className="flex">
+      <div className="flex items-center gap-2 flex-wrap">
         <SideBarButtonElement formElement={formElements.TextField} />
+        <SideBarButtonElement formElement={formElements.NumberField} />
+        <SideBarButtonElement formElement={formElements.TextAreaField} />
       </div>
       <h3 className="text-muted-foreground font-bold text-center">
         Layout Elements
