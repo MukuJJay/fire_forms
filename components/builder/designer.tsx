@@ -129,11 +129,11 @@ const Designer = ({ form }: { form: Form }) => {
         </p>
       )}
       {isOver && context?.elements.length === 0 && (
-        <div className="bg-accent w-full h-[120px] rounded-md"></div>
+        <div className="bg-accent w-full min-h-[120px] rounded-md"></div>
       )}
       {context?.elements.map((element) => (
         <div
-          className="w-full h-[120px]"
+          className="w-full min-h-[120px]"
           key={element.id}
           onClick={(e) => {
             e.stopPropagation();

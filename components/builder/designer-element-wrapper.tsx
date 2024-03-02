@@ -40,7 +40,7 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
 
   return (
     <div
-      className="hover:bg-accent/50 group cursor-grab w-full h-[120px] bg-accent/70 px-4 flex items-center rounded-md relative"
+      className="hover:bg-accent/50 group cursor-grab w-full min-h-[120px] bg-accent/70 p-4 flex items-center rounded-md relative"
       ref={draggable.setNodeRef}
       {...draggable.listeners}
       {...draggable.attributes}
@@ -63,8 +63,8 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
 
       <DesignerElement instance={element} />
 
-      <div className="hidden group-hover:flex justify-center items-center absolute top-0 left-0 w-full h-full">
-        <p className="text-muted-foreground animate-pulse">
+      <div className="hidden group-hover:flex justify-center items-center absolute top-0 left-0 w-full h-full backdrop-blur-sm">
+        <p className="font-bold animate-pulse">
           Click here to set see properties
         </p>
         <button

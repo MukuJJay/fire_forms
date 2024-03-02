@@ -1,6 +1,7 @@
+import HeadingField from "@/components/fields/heading/heading";
 import TextField from "@/components/fields/text-field/text-field";
 
-export type ElementType = "TextField";
+export type ElementType = "TextField" | "HeadingField";
 
 export interface FormElementInstance {
   id: string;
@@ -30,4 +31,5 @@ type FormElementsType = {
 
 export const formElements: FormElementsType = {
   TextField: TextField,
+  HeadingField: HeadingField,
 };

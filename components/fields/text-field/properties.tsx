@@ -32,8 +32,8 @@ const PropertiesComponent = ({
     instance.extraAttributes;
 
   const formSchema = z.object({
-    label: z.string().min(2).max(50),
-    placeholder: z.string().max(100),
+    label: z.string().min(2).max(200),
+    placeholder: z.string().max(200),
     helperText: z.string().max(200),
     required: z.boolean(),
     min: z.coerce.number().gte(0).lte(5000).optional(),
