@@ -13,9 +13,12 @@ const SideBarButtonElements = () => {
       <h3 className="text-muted-foreground font-bold text-center">
         Layout Elements
       </h3>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 flex-wrap">
         <SideBarButtonElement formElement={formElements.HeadingField} />
         <SideBarButtonElement formElement={formElements.SubHeadingField} />
+        <SideBarButtonElement formElement={formElements.ParagraphField} />
+        <SideBarButtonElement formElement={formElements.SeparatorField} />
+        <SideBarButtonElement formElement={formElements.SpacerField} />
       </div>
     </div>
   );

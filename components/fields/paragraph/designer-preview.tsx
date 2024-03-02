@@ -1,6 +1,6 @@
 import { Label } from "@/components/ui/label";
 import { FormElementInstance } from "@/interfaces/form-elements";
-import { extraAttributesType } from "./sub-heading";
+import { extraAttributesType } from "./paragraph";
 
 export const DesignerComponent = ({
   instance,
@@ -30,7 +30,7 @@ export const PreviewComponent = ({
 
   return (
     <div className="w-full px-6">
-      <h2 className="text-base text-muted-foreground font-bold">{label}</h2>
+      <h2 className="text-base text-muted-foreground">{label}</h2>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { FormElementInstance } from "@/interfaces/form-elements";
-import { extraAttributesType } from "./sub-heading";
+import { extraAttributesType } from "./separator";
+import { Separator } from "@/components/ui/separator";
 
 const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
   const extraAttributes = instance.extraAttributes as extraAttributesType;
@@ -8,7 +9,7 @@ const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
 
   return (
     <div className="w-full px-6">
-      <h2 className="text-base text-muted-foreground font-bold">{label}</h2>
+      <Separator />
     </div>
   );
 };

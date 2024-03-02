@@ -1,16 +1,12 @@
 import { FormElementInstance } from "@/interfaces/form-elements";
-import { extraAttributesType } from "./sub-heading";
+import { extraAttributesType } from "./spacer";
 
 const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
   const extraAttributes = instance.extraAttributes as extraAttributesType;
 
-  const { label } = extraAttributes;
+  const { height } = extraAttributes;
 
-  return (
-    <div className="w-full px-6">
-      <h2 className="text-base text-muted-foreground font-bold">{label}</h2>
-    </div>
-  );
+  return <div style={{ width: "100%", height: `${height}px` }}></div>;
 };
 
 export default SubmitComponent;
