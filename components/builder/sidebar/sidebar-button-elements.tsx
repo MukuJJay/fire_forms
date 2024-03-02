@@ -3,7 +3,7 @@ import SideBarButtonElement from "./sidebar-button-element";
 
 const SideBarButtonElements = () => {
   return (
-    <div className="flex flex-col gap-3 p-4">
+    <div className="flex flex-col gap-3 p-4 overflow-y-auto">
       <h3 className="text-muted-foreground font-bold text-center">
         Field Elements
       </h3>
@@ -11,6 +11,7 @@ const SideBarButtonElements = () => {
         <SideBarButtonElement formElement={formElements.TextField} />
         <SideBarButtonElement formElement={formElements.NumberField} />
         <SideBarButtonElement formElement={formElements.TextAreaField} />
+        <SideBarButtonElement formElement={formElements.DateField} />
       </div>
       <h3 className="text-muted-foreground font-bold text-center">
         Layout Elements

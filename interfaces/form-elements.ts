@@ -1,3 +1,4 @@
+import DateField from "@/components/fields/date-field/date-field";
 import HeadingField from "@/components/fields/heading/heading";
 import NumberField from "@/components/fields/number-field/number-field";
 import ParagraphField from "@/components/fields/paragraph/paragraph";
@@ -15,7 +16,8 @@ export type ElementType =
   | "SeparatorField"
   | "SpacerField"
   | "NumberField"
-  | "TextAreaField";
+  | "TextAreaField"
+  | "DateField";
 
 export interface FormElementInstance {
   id: string;
@@ -52,4 +54,5 @@ export const formElements: FormElementsType = {
   SpacerField: SpacerField,
   NumberField: NumberField,
   TextAreaField: TextAreaField,
+  DateField: DateField,
 };

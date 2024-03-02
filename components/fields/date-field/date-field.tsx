@@ -1,24 +1,20 @@
 import { ElementType, FormElement } from "@/interfaces/form-elements";
-import { TextSelect } from "lucide-react";
 import { DesignerComponent, PreviewComponent } from "./designer-preview";
 import PropertiesComponent from "./properties";
 import SubmitComponent from "./submit";
+import { BsCalendar2DateFill } from "react-icons/bs";
 
-const type: ElementType = "TextAreaField";
+const type: ElementType = "DateField";
 
 const extraAttributes = {
-  label: "Text Area",
-  placeholder: "Add Placeholder",
+  label: "Label",
   helperText: "Helper Text",
   required: false,
-  rows: 5,
-  min: 1,
-  max: 255,
 };
 
 export type extraAttributesType = typeof extraAttributes;
 
-const TextAreaField: FormElement = {
+const DateField: FormElement = {
   type,
   construct: (id) => ({
     id,
@@ -27,8 +23,8 @@ const TextAreaField: FormElement = {
   }),
 
   desginerButton: {
-    icon: TextSelect,
-    label: "Text Area",
+    icon: BsCalendar2DateFill,
+    label: "Text Field",
   },
 
   designerComponent: DesignerComponent,
@@ -37,4 +33,4 @@ const TextAreaField: FormElement = {
   submitComponent: SubmitComponent,
 };
 
-export default TextAreaField;
+export default DateField;
