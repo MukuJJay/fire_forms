@@ -70,7 +70,12 @@ export const PreviewComponent = ({
             align="start"
             className="flex justify-center items-center"
           >
-            <Calendar onDayClick={setDate} />
+            <Calendar
+              captionLayout="dropdown-buttons"
+              onDayClick={setDate}
+              fromYear={1960}
+              toYear={2030}
+            />
           </PopoverContent>
         </Popover>
       </div>
