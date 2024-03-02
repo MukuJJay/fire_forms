@@ -23,7 +23,7 @@ const SideBarButtonElement = ({
       variant={"outline"}
       ref={setNodeRef}
       className={cn(
-        "text-primary flex flex-col items-center gap-1 w-[110px] h-[110px] cursor-grab",
+        "text-primary flex flex-col items-center gap-1 w-[130px] h-[130px] cursor-grab",
         isDragging && "ring-2 ring-primary/60"
       )}
       {...listeners}
@@ -45,7 +45,7 @@ export const SideBarButtonElementDraggingOverlay = ({
   return (
     <Button
       variant={"outline"}
-      className="text-primary flex flex-col items-center gap-1 w-[110px] h-[110px] cursor-grab"
+      className="text-primary flex flex-col items-center gap-1 w-[130px] h-[130px] cursor-grab"
     >
       <Icon className="w-8 h-8 min-w-7 min-h-7" />
       <span className="text-lg">{label}</span>

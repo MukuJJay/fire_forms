@@ -1,7 +1,8 @@
 import HeadingField from "@/components/fields/heading/heading";
+import SubHeadingField from "@/components/fields/sub-heading/sub-heading";
 import TextField from "@/components/fields/text-field/text-field";
 
-export type ElementType = "TextField" | "HeadingField";
+export type ElementType = "TextField" | "HeadingField" | "SubHeadingField";
 
 export interface FormElementInstance {
   id: string;
@@ -32,4 +33,5 @@ type FormElementsType = {
 export const formElements: FormElementsType = {
   TextField: TextField,
   HeadingField: HeadingField,
+  SubHeadingField: SubHeadingField,
 };

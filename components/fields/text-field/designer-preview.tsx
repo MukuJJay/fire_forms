@@ -46,16 +46,18 @@ export const PreviewComponent = ({
   const { label, placeholder, helperText, required } = extraAttributes;
 
   return (
-    <div className="flex flex-col gap-2 w-full px-6 pt-6 pb-3 space-y-1">
+    <div className="flex flex-col gap-2 w-full px-6 pt-6 pb-3 space-y-1 dark:bg-stone-900 bg-stone-200 rounded-md">
       <Label>
         {label}
         {required && <sup>*</sup>}
       </Label>
-      <Input
-        placeholder={placeholder}
-        disabled={typeof value === "string" ? true : false}
-        value={value}
-      />
+      <div className="pb-4 pt-2">
+        <Input
+          placeholder={placeholder}
+          disabled={typeof value === "string" ? true : false}
+          value={value}
+        />
+      </div>
       {helperText && (
         <span className="text-xs text-muted-foreground">{helperText}</span>
       )}
