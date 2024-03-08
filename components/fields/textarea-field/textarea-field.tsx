@@ -7,7 +7,7 @@ import SubmitComponent from "./submit";
 const type: ElementType = "TextAreaField";
 
 const extraAttributes = {
-  label: "Text Area",
+  label: "Label",
   placeholder: "Add Placeholder",
   helperText: "Helper Text",
   required: false,

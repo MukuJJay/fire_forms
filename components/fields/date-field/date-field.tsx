@@ -24,7 +24,7 @@ const DateField: FormElement = {
 
   desginerButton: {
     icon: BsCalendar2DateFill,
-    label: "Text Field",
+    label: "Date Field",
   },
 
   designerComponent: DesignerComponent,

@@ -7,7 +7,7 @@ import SubmitComponent from "./submit";
 const type: ElementType = "SubHeadingField";
 
 const extraAttributes = {
-  label: "Sub Heading Field",
+  label: "Label",
 };
 
 export type extraAttributesType = typeof extraAttributes;

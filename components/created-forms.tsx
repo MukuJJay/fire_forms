@@ -42,7 +42,7 @@ const CreatedForms = async () => {
           <Button className="w-full p-0" variant={"outline"}>
             <Link
               href={`form/${form.id}`}
-              className="flex justify-center items-center gap-3 w-full"
+              className="flex justify-center items-center gap-3 w-full h-full"
             >
               View Submissions
               <BookOpenText className="w-5 h-5" />

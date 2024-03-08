@@ -7,7 +7,7 @@ import SubmitComponent from "./submit";
 const type: ElementType = "NumberField";
 
 const extraAttributes = {
-  label: "Number Field",
+  label: "Label",
   placeholder: "Add Placeholder",
   helperText: "Helper Text",
   required: false,

@@ -49,7 +49,7 @@ function mapColumn<TData, TValue>(contentStr: string) {
       return (
         <Tooltip label={value} delayDuration={400}>
           <div className="text-center">
-            {value.length > 30 ? value.slice(0, 30) + "..." : value}
+            {value && value.length > 30 ? value.slice(0, 30) + "..." : value}
           </div>
         </Tooltip>
       );

@@ -7,7 +7,7 @@ import SubmitComponent from "./submit";
 const type: ElementType = "SeparatorField";
 
 const extraAttributes = {
-  label: "Separator Field",
+  label: "Label",
 };
 
 export type extraAttributesType = typeof extraAttributes;

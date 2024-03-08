@@ -19,37 +19,37 @@ export const submitForm = async (shareId: string, content: any) => {
     throw new Error("Form not found!");
   }
 
-  const idArr = [];
-  const contentTemplate: FormElementInstance[] = JSON.parse(form.content);
-  const values: Record<string, valueType> = JSON.parse(content);
+  // const idArr = [];
+  // const contentTemplate: FormElementInstance[] = JSON.parse(form.content);
+  // const values: Record<string, valueType> = JSON.parse(content);
 
-  for (const instance of contentTemplate) {
-    idArr.push(instance.id);
-  }
+  // for (const instance of contentTemplate) {
+  //   idArr.push(instance.id);
+  // }
 
-  for (const key in values) {
-    if (!idArr.includes(key)) {
-      throw new Error("Format not supported!");
-    }
+  // for (const key in values) {
+  //   if (!idArr.includes(key)) {
+  //     throw new Error("Format not supported!");
+  //   }
 
-    for (const instance of contentTemplate) {
-      if (instance.id === key) {
-        if (
-          instance.extraAttributes?.required === true &&
-          values[key].value.length === 0
-        ) {
-          throw new Error("Format not supported!");
-        }
+  //   for (const instance of contentTemplate) {
+  //     if (instance.id === key) {
+  //       if (
+  //         instance.extraAttributes?.required === true &&
+  //         values[key].value.length === 0
+  //       ) {
+  //         throw new Error("Format not supported!");
+  //       }
 
-        if (
-          values[key].value.length < instance.extraAttributes?.min ||
-          values[key].value.length > instance.extraAttributes?.max
-        ) {
-          throw new Error("Format not supported!");
-        }
-      }
-    }
-  }
+  //       if (
+  //         values[key]?.value.length < instance.extraAttributes?.min ||
+  //         values[key]?.value.length > instance.extraAttributes?.max
+  //       ) {
+  //         throw new Error("Format not supported!");
+  //       }
+  //     }
+  //   }
+  // }
 
   const updateForm = await db.form.update({
     where: {

@@ -7,7 +7,7 @@ import SubmitComponent from "./submit";
 const type: ElementType = "ParagraphField";
 
 const extraAttributes = {
-  label: "Paragraph Field",
+  label: "Label",
 };
 
 export type extraAttributesType = typeof extraAttributes;
