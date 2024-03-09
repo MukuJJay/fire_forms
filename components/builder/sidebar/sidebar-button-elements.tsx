@@ -12,6 +12,7 @@ const SideBarButtonElements = () => {
         <SideBarButtonElement formElement={formElements.NumberField} />
         <SideBarButtonElement formElement={formElements.TextAreaField} />
         <SideBarButtonElement formElement={formElements.DateField} />
+        <SideBarButtonElement formElement={formElements.SelectField} />
       </div>
       <h3 className="text-muted-foreground font-bold text-center">
         Layout Elements

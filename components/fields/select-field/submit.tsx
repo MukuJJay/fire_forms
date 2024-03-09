@@ -1,15 +1,22 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FormElementInstance } from "@/interfaces/form-elements";
-import { extraAttributesType } from "./text-field";
+import { extraAttributesType } from "./select-field";
 import useErrorCheck, { valueType } from "@/hooks/error-checker-zustand";
 import { useEffect, useState } from "react";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
   const extraAttributes = instance.extraAttributes as extraAttributesType;
 
-  const { label, placeholder, helperText, required, min, max } =
-    extraAttributes;
+  const { label, placeholder, helperText, required, options } = extraAttributes;
 
   const { startChecking, setErrorObj, setValues } = useErrorCheck();
   const [value, setValue] = useState<string>("");
@@ -21,17 +28,13 @@ const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
       setErrorMsg("Field is required");
       return;
     }
-    if (value.length < min) {
-      setErrorObj(instance.id, true);
-      setErrorMsg(`Minimum character length : ${min}`);
-      return;
-    }
 
-    if (value.length > max) {
-      setErrorObj(instance.id, true);
-      setErrorMsg(`Maximum character length : ${max}`);
-      return;
-    }
+    // if (!options.includes(value)) {
+    //   console.log(value);
+    //   setErrorObj(instance.id, true);
+    //   setErrorMsg("Invalid option");
+    //   return;
+    // }
 
     setErrorObj(instance.id, false);
     setErrorMsg("");
@@ -64,12 +67,20 @@ const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
         {required && <sup>*</sup>}
       </Label>
       <div className="relative pb-4 pt-2">
-        <Input
-          placeholder={placeholder}
-          onChange={(e) => setValue(e.target.value)}
-          value={value}
-          onBlur={errorCheck}
-        />
+        <Select onValueChange={(e) => setValue(e)}>
+          <SelectTrigger onBlur={errorCheck}>
+            <SelectValue
+              placeholder={placeholder ? placeholder : "Select Option"}
+            />
+          </SelectTrigger>
+          <SelectContent>
+            {options.split(",").map((elem, index) => (
+              <SelectItem key={index} value={`${index + 1}. ${elem}`}>
+                {elem}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
         {errorMsg && (
           <span className="text-xs text-destructive absolute right-0 bottom-[-7px] md:text-[10px]">
             {errorMsg}

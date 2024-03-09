@@ -1,8 +1,15 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FormElementInstance } from "@/interfaces/form-elements";
-import { extraAttributesType } from "./text-field";
+import { extraAttributesType } from "./select-field";
 import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export const DesignerComponent = ({
   instance,
@@ -11,8 +18,7 @@ export const DesignerComponent = ({
 }) => {
   const extraAttributes = instance.extraAttributes as extraAttributesType;
 
-  const { label, placeholder, helperText, required, min, max } =
-    extraAttributes;
+  const { label, helperText, required, options } = extraAttributes;
 
   return (
     <div className="flex flex-col gap-2 w-full">
@@ -21,12 +27,13 @@ export const DesignerComponent = ({
           {label}
           {required && <sup>*</sup>}
         </Label>
-        <div className="flex gap-1 items-center">
-          <Badge variant={"indigo"}>Min : {min}</Badge>
-          <Badge variant={"indigo"}>Max : {max}</Badge>
-        </div>
       </div>
-      <Input placeholder={placeholder} disabled />
+      <div className="flex items-center gap-1">
+        {options &&
+          options
+            .split(",")
+            .map((elem) => <Badge variant={"indigo"}>{elem}</Badge>)}
+      </div>
       {helperText && (
         <span className="text-xs text-muted-foreground">{helperText}</span>
       )}
@@ -43,7 +50,7 @@ export const PreviewComponent = ({
 }) => {
   const extraAttributes = instance.extraAttributes as extraAttributesType;
 
-  const { label, placeholder, helperText, required } = extraAttributes;
+  const { label, helperText, required, placeholder, options } = extraAttributes;
 
   return (
     <div className="flex flex-col gap-2 w-full px-6 pt-6 pb-3 space-y-1 dark:bg-stone-900 bg-stone-200 rounded-md">
@@ -51,12 +58,25 @@ export const PreviewComponent = ({
         {label}
         {required && <sup>*</sup>}
       </Label>
-      <div className="pb-4 pt-2">
-        <Input
-          placeholder={placeholder}
-          disabled={typeof value === "string" ? true : false}
-          value={value}
-        />
+      <div>
+        <Select disabled={!!value}>
+          <SelectTrigger>
+            {!value ? (
+              <SelectValue
+                placeholder={placeholder ? placeholder : "Select Option"}
+              />
+            ) : (
+              value
+            )}
+          </SelectTrigger>
+          <SelectContent>
+            {options.split(",").map((elem, index) => (
+              <SelectItem key={index} value={`${index + 1}. ${elem}`}>
+                {elem}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
       {helperText && (
         <span className="text-xs text-muted-foreground">{helperText}</span>

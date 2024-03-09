@@ -4,20 +4,19 @@ import { DesignerComponent, PreviewComponent } from "./designer-preview";
 import PropertiesComponent from "./properties";
 import SubmitComponent from "./submit";
 
-const type: ElementType = "TextField";
+const type: ElementType = "SelectField";
 
 const extraAttributes = {
   label: "Label",
-  placeholder: "Add Placeholder",
   helperText: "Helper Text",
+  placeholder: "Select here",
+  options: "",
   required: false,
-  min: 1,
-  max: 255,
 };
 
 export type extraAttributesType = typeof extraAttributes;
 
-const TextField: FormElement = {
+const SelectField: FormElement = {
   type,
   construct: (id) => ({
     id,
@@ -27,7 +26,7 @@ const TextField: FormElement = {
 
   desginerButton: {
     icon: FileType,
-    label: "Text Field",
+    label: "Select Field",
   },
 
   designerComponent: DesignerComponent,
@@ -36,4 +35,4 @@ const TextField: FormElement = {
   submitComponent: SubmitComponent,
 };
 
-export default TextField;
+export default SelectField;

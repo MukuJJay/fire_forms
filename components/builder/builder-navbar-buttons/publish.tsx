@@ -44,6 +44,9 @@ const Publish = ({ formId }: { formId: string }) => {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
+          <AlertDialogTitle className="text-destructive text-2xl">
+            SAVE BEFORE YOU PUBLISH
+          </AlertDialogTitle>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. You can't edit your form after
