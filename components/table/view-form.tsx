@@ -2,17 +2,13 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { EyeIcon } from "lucide-react";
 import { validate } from "uuid";
-import { ElementType, formElements } from "@/interfaces/form-elements";
+import {
+  ElementType,
+  FormElementInstance,
+  formElements,
+} from "@/interfaces/form-elements";
 
-const ViewForm = ({ row }: { row: any }) => {
-  const instanceIdArr = [];
-
-  for (const key in row.original) {
-    if (validate(key.toString())) {
-      instanceIdArr.push(key.toString());
-    }
-  }
-
+const ViewForm = ({ row, cols }: { row: any; cols: FormElementInstance[] }) => {
   function elementMapper(instanceId: string) {
     const PreviewElement =
       formElements[row.original.instance[instanceId].type as ElementType]
@@ -36,7 +32,9 @@ const ViewForm = ({ row }: { row: any }) => {
           </Button>
         </DialogTrigger>
         <DialogContent className="overflow-y-auto max-h-[95%] rounded-md">
-          {instanceIdArr.map((instanceId: string) => elementMapper(instanceId))}
+          {cols.map((instance: FormElementInstance) =>
+            elementMapper(instance.id)
+          )}
         </DialogContent>
       </Dialog>
     </div>

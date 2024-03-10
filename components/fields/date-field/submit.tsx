@@ -20,7 +20,7 @@ const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
   const { label, helperText, required } = extraAttributes;
 
   const { startChecking, setErrorObj, setValues } = useErrorCheck();
-  const [value, setValue] = useState<Date | null>();
+  const [value, setValue] = useState<string | null>();
   const [errorMsg, setErrorMsg] = useState<string>("");
 
   const errorCheck = () => {
@@ -72,7 +72,7 @@ const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
             align="start"
             className="flex justify-center items-center"
           >
-            <Calendar onDayClick={setValue} />
+            <Calendar onDayClick={(e) => setValue(format(e, "dd-MMM-yyyy"))} />
           </PopoverContent>
         </Popover>
         {errorMsg && (

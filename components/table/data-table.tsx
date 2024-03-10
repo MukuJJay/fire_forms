@@ -64,7 +64,7 @@ function mapColumn<TData, TValue>(contentStr: string) {
         return <div className="text-center min-w-[50px]">View</div>;
       },
       cell: ({ row }: { row: any }) => {
-        return <ViewForm row={row} />;
+        return <ViewForm row={row} cols={content} />;
       },
     },
     {
