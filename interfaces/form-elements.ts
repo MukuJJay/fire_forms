@@ -1,3 +1,4 @@
+import CheckboxField from "@/components/fields/checkbox-field/checkbox-field";
 import DateField from "@/components/fields/date-field/date-field";
 import HeadingField from "@/components/fields/heading/heading";
 import NumberField from "@/components/fields/number-field/number-field";
@@ -19,7 +20,8 @@ export type ElementType =
   | "NumberField"
   | "TextAreaField"
   | "DateField"
-  | "SelectField";
+  | "SelectField"
+  | "CheckboxField";
 
 export interface FormElementInstance {
   id: string;
@@ -58,4 +60,5 @@ export const formElements: FormElementsType = {
   TextAreaField: TextAreaField,
   DateField: DateField,
   SelectField: SelectField,
+  CheckboxField: CheckboxField,
 };
