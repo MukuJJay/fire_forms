@@ -49,7 +49,7 @@ const Publish = ({ formId }: { formId: string }) => {
           </AlertDialogTitle>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. You can't edit your form after
+            This action cannot be undone. You can not edit your form after
             publishing. Anyone with the link can view and submit the form.
           </AlertDialogDescription>
         </AlertDialogHeader>
