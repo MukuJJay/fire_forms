@@ -17,7 +17,7 @@ const CreatedForms = async () => {
   const forms = await getForms();
 
   return forms.map((form) => (
-    <Card>
+    <Card key={form.id}>
       <CardHeader>
         <CardTitle className="flex items-center justify-between text-lg">
           <span className="truncate">{form?.name}</span>
