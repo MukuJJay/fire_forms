@@ -1,5 +1,6 @@
 import { ElementType, FormElement } from "@/interfaces/form-elements";
-import { FileType } from "lucide-react";
+import { IoMdRadioButtonOn } from "react-icons/io";
+
 import { DesignerComponent, PreviewComponent } from "./designer-preview";
 import PropertiesComponent from "./properties";
 import SubmitComponent from "./submit";
@@ -24,7 +25,7 @@ const RadioField: FormElement = {
   }),
 
   desginerButton: {
-    icon: FileType,
+    icon: IoMdRadioButtonOn,
     label: "Radio Field",
   },
 
