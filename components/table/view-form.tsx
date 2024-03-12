@@ -14,6 +14,7 @@ const ViewForm = ({ row, cols }: { row: any; cols: FormElementInstance[] }) => {
       formElements[row.original.instance[instanceId].type as ElementType]
         .previewComponent;
 
+    console.log(row.original[instanceId]);
     return (
       <PreviewElement
         instance={row.original.instance[instanceId]}

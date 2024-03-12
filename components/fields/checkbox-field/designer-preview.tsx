@@ -46,8 +46,7 @@ export const PreviewComponent = ({
 }) => {
   const extraAttributes = instance.extraAttributes as extraAttributesType;
 
-  const parsedValue = JSON.parse(value ? value : "");
-  console.log(parsedValue);
+  const parsedValue = value ? JSON.parse(value ? value : "") : "";
 
   const { label, helperText, required, options } = extraAttributes;
 
@@ -61,7 +60,7 @@ export const PreviewComponent = ({
         {options.split(",").map((option, index) => (
           <div key={index} className="flex items-center gap-2">
             <Checkbox
-              checked={parsedValue ? parsedValue[index][option] : false}
+              // checked={parsedValue ? parsedValue[index][option] : false}
               id={index.toString()}
             />
             <label

@@ -12,7 +12,7 @@ const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
   const { label, helperText, required, options } = extraAttributes;
 
   const { startChecking, setErrorObj, setValues } = useErrorCheck();
-  const [value, setValue] = useState<Record<string, boolean>[]>([]);
+  const [value, setValue] = useState<string[]>([]);
   const [errorMsg, setErrorMsg] = useState<string>("");
 
   const errorCheck = () => {
@@ -58,14 +58,16 @@ const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
             <div key={index} className="flex items-center gap-2">
               <Checkbox
                 id={index.toString()}
-                onCheckedChange={(e: boolean) =>
-                  setValue((prev) => {
-                    const tmp = [...prev];
-                    tmp[index][option] = e;
-                    console.log(tmp);
-                    return tmp;
-                  })
-                }
+                // onCheckedChange={(e: boolean) =>
+                //   setValue((prev) => {
+                //     const tmp = [...prev];
+                //     if(e){
+                //       tmp[index] = options;
+                //       return tmp;
+                //     }
+
+                //   })
+                // }
               />
               <label
                 htmlFor={index.toString()}
