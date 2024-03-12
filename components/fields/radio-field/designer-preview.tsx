@@ -1,9 +1,8 @@
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FormElementInstance } from "@/interfaces/form-elements";
-import { extraAttributesType } from "./checkbox-field";
+import { extraAttributesType } from "./radio-field";
 import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export const DesignerComponent = ({
   instance,
@@ -46,8 +45,6 @@ export const PreviewComponent = ({
 }) => {
   const extraAttributes = instance.extraAttributes as extraAttributesType;
 
-  // const parsedValue = value ? JSON.parse(value ? value : "") : "";
-
   const { label, helperText, required, options } = extraAttributes;
 
   return (
@@ -56,19 +53,28 @@ export const PreviewComponent = ({
         {label}
         {required && <sup>*</sup>}
       </Label>
-      <div className="flex flex-col gap-4">
-        {options.split(",").map((option, index) => (
-          <div key={index} className="flex items-center gap-2 my-4">
-            <Checkbox checked={value?.includes(option)} id={index.toString()} />
-            <label
-              htmlFor={index.toString()}
-              className="text-sm text-muted-foreground font-bold"
-            >
-              {option}
-            </label>
-          </div>
-        ))}
-      </div>
+      <RadioGroup disabled>
+        <div className="flex flex-col gap-4 my-4">
+          {options.split(",").map((option, index) => (
+            <div key={index} className="flex items-center gap-2">
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem
+                  value={option}
+                  id={index.toString()}
+                  checked={value === option}
+                />
+                <Label
+                  htmlFor={index.toString()}
+                  className="text-sm text-muted-foreground font-bold"
+                >
+                  {option}
+                </Label>
+              </div>
+            </div>
+          ))}
+        </div>
+      </RadioGroup>
+
       {helperText && (
         <span className="text-xs text-muted-foreground">{helperText}</span>
       )}

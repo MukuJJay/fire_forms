@@ -14,6 +14,7 @@ const SideBarButtonElements = () => {
         <SideBarButtonElement formElement={formElements.DateField} />
         <SideBarButtonElement formElement={formElements.SelectField} />
         <SideBarButtonElement formElement={formElements.CheckboxField} />
+        <SideBarButtonElement formElement={formElements.RadioField} />
       </div>
       <h3 className="text-muted-foreground font-bold text-center">
         Layout Elements

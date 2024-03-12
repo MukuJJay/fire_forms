@@ -1,10 +1,9 @@
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FormElementInstance } from "@/interfaces/form-elements";
-import { extraAttributesType } from "./checkbox-field";
+import { extraAttributesType } from "./radio-field";
 import useErrorCheck, { valueType } from "@/hooks/error-checker-zustand";
 import { useEffect, useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
   const extraAttributes = instance.extraAttributes as extraAttributesType;
@@ -12,7 +11,7 @@ const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
   const { label, helperText, required, options } = extraAttributes;
 
   const { startChecking, setErrorObj, setValues } = useErrorCheck();
-  const [value, setValue] = useState<string[]>([]);
+  const [value, setValue] = useState<string>("");
   const [errorMsg, setErrorMsg] = useState<string>("");
 
   const errorCheck = () => {
@@ -53,33 +52,23 @@ const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
         {required && <sup>*</sup>}
       </Label>
       <div className="relative ">
-        <div className="flex flex-col gap-4">
-          {options.split(",").map((option, index) => (
-            <div key={index} className="flex items-center gap-2">
-              <Checkbox
-                id={index.toString()}
-                onCheckedChange={(e: boolean) =>
-                  setValue((prev) => {
-                    const tmp = [...prev];
-                    if (e) {
-                      tmp[index] = option;
-                      return tmp;
-                    } else {
-                      tmp[index] = "";
-                      return tmp;
-                    }
-                  })
-                }
-              />
-              <label
-                htmlFor={index.toString()}
-                className="text-sm text-muted-foreground font-bold"
-              >
-                {option}
-              </label>
-            </div>
-          ))}
-        </div>
+        <RadioGroup onValueChange={(e) => setValue(e)}>
+          <div className="flex flex-col gap-4 my-4">
+            {options.split(",").map((option, index) => (
+              <div key={index} className="flex items-center gap-2">
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value={option} id={index.toString()} />
+                  <Label
+                    htmlFor={index.toString()}
+                    className="text-sm text-muted-foreground font-bold"
+                  >
+                    {option}
+                  </Label>
+                </div>
+              </div>
+            ))}
+          </div>
+        </RadioGroup>
         {errorMsg && (
           <span className="text-xs text-destructive absolute right-0 bottom-[-7px] md:text-[10px]">
             {errorMsg}
