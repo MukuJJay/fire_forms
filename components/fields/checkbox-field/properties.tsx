@@ -16,7 +16,7 @@ import { DesignerContext } from "@/context/designer-context";
 import { FormElementInstance } from "@/interfaces/form-elements";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BadgeX, Plus } from "lucide-react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -76,6 +76,13 @@ const PropertiesComponent = ({
       return modifiedArr;
     });
   };
+
+  useEffect(() => {
+    if (!options) {
+      return;
+    }
+    setOptionsArr(options.split(","));
+  }, []);
 
   return (
     <Form {...form}>

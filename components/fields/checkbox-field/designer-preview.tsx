@@ -51,17 +51,21 @@ export const PreviewComponent = ({
   const { label, helperText, required, options } = extraAttributes;
 
   return (
-    <div className="flex flex-col gap-2 w-full px-6 pt-6 pb-3 space-y-1 dark:bg-stone-900 bg-stone-200 rounded-md">
+    <div className="flex flex-col gap-2 w-full px-6 pt-6 pb-3 dark:bg-stone-900 bg-stone-200 rounded-md">
       <Label>
         {label}
         {required && <sup>*</sup>}
       </Label>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 my-4">
         {options.split(",").map((option, index) => (
-          <div key={index} className="flex items-center gap-2 my-4">
-            <Checkbox checked={value?.includes(option)} id={index.toString()} />
+          <div key={index} className="flex items-center gap-2 ">
+            <Checkbox
+              checked={value?.includes(option)}
+              // id={index.toString()}
+              disabled={!!value}
+            />
             <label
-              htmlFor={index.toString()}
+              // htmlFor={index.toString()}
               className="text-sm text-muted-foreground font-bold"
             >
               {option}

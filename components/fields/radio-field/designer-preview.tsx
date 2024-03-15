@@ -53,18 +53,18 @@ export const PreviewComponent = ({
         {label}
         {required && <sup>*</sup>}
       </Label>
-      <RadioGroup disabled>
+      <RadioGroup disabled={!!value}>
         <div className="flex flex-col gap-4 my-4">
           {options.split(",").map((option, index) => (
             <div key={index} className="flex items-center gap-2">
               <div className="flex items-center space-x-2">
                 <RadioGroupItem
                   value={option}
-                  id={index.toString()}
+                  // id={index.toString()}
                   checked={value === option}
                 />
                 <Label
-                  htmlFor={index.toString()}
+                  // htmlFor={index.toString()}
                   className="text-sm text-muted-foreground font-bold"
                 >
                   {option}

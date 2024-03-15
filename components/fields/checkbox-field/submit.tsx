@@ -72,7 +72,7 @@ const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
                 }
               />
               <label
-                htmlFor={index.toString()}
+                // htmlFor={index.toString()}
                 className="text-sm text-muted-foreground font-bold"
               >
                 {option}

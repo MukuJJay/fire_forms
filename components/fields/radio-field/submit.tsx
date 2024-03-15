@@ -59,7 +59,7 @@ const SubmitComponent = ({ instance }: { instance: FormElementInstance }) => {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value={option} id={index.toString()} />
                   <Label
-                    htmlFor={index.toString()}
+                    // htmlFor={index.toString()}
                     className="text-sm text-muted-foreground font-bold"
                   >
                     {option}
