@@ -14,7 +14,7 @@ const PropertiesForm = () => {
     formElements[context?.selectedElement?.type].propertiesComponent;
 
   return (
-    <div className="p-4 flex flex-col gap-4">
+    <div className="p-4 flex flex-col gap-4 h-full">
       <div className="flex items-center justify-between ">
         <span className="text-muted-foreground text-sm">Properties Form</span>
         <XSquare

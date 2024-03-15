@@ -3,7 +3,7 @@ import SideBarButtonElement from "./sidebar-button-element";
 
 const SideBarButtonElements = () => {
   return (
-    <div className="flex flex-col gap-3 p-4">
+    <div className="flex flex-col gap-3 p-4 h-full">
       <h3 className="text-muted-foreground font-bold text-center">
         Field Elements
       </h3>

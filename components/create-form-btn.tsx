@@ -28,11 +28,15 @@ import {
   createFormSchemaType,
 } from "@/interfaces/form-schema";
 import { createForm } from "@/actions/create-form";
-import { Loader2, Plus } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { Loader, Loader2, Plus } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const CreateFormBtn = () => {
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isRoutePushing, setIsRoutePushing] = useState<boolean>(false);
+  const pathName = usePathname();
 
   const form = useForm<createFormSchemaType>({
     resolver: zodResolver(createFormSchema),
@@ -45,6 +49,8 @@ const CreateFormBtn = () => {
         title: "Form created successfully!",
         duration: 1800,
       });
+      setIsOpen(false);
+      setIsRoutePushing(true);
 
       router.push(`/builder/${formId}`);
     } catch (error) {
@@ -56,14 +62,21 @@ const CreateFormBtn = () => {
     }
   };
 
+  useEffect(() => {
+    setIsRoutePushing(false);
+  }, [pathName]);
+
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
           variant={"outline"}
           className="border-dashed border-primary w-full h-full"
         >
-          <Plus className="text-primary w-12 h-12" />
+          {!isRoutePushing && <Plus className="text-primary w-12 h-12" />}
+          {isRoutePushing && (
+            <Loader className="text-primary w-12 h-12 animate-spin" />
+          )}
         </Button>
       </DialogTrigger>
       <DialogContent>
@@ -72,7 +85,7 @@ const CreateFormBtn = () => {
         </DialogHeader>
         <div>
           <Form {...form}>
-            <form className="space-y-2">
+            <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
                 control={form.control}
                 name="name"
@@ -101,21 +114,19 @@ const CreateFormBtn = () => {
                   </FormItem>
                 )}
               />
+
+              <DialogFooter>
+                <Button disabled={form.formState.isSubmitting}>
+                  {form.formState.isSubmitting ? (
+                    <Loader2 className="animate-spin" />
+                  ) : (
+                    "Create"
+                  )}
+                </Button>
+              </DialogFooter>
             </form>
           </Form>
         </div>
-        <DialogFooter>
-          <Button
-            onClick={form.handleSubmit(onSubmit)}
-            disabled={form.formState.isSubmitting}
-          >
-            {form.formState.isSubmitting ? (
-              <Loader2 className="animate-spin" />
-            ) : (
-              "Create"
-            )}
-          </Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
