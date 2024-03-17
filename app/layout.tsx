@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Fire Forms",
-  description: "A dynamic form builder tool.",
+  description: "A dynamic form builder tool. That make forms easy to build.",
 };
 
 export default function RootLayout({
