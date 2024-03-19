@@ -1,10 +1,10 @@
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { EyeIcon } from "lucide-react";
-import { validate } from "uuid";
 import {
   ElementType,
   FormElementInstance,
+  LayoutElements,
   formElements,
 } from "@/interfaces/form-elements";
 
@@ -14,7 +14,6 @@ const ViewForm = ({ row, cols }: { row: any; cols: FormElementInstance[] }) => {
       formElements[row.original.instance[instanceId].type as ElementType]
         .previewComponent;
 
-    console.log(row.original[instanceId]);
     return (
       <PreviewElement
         instance={row.original.instance[instanceId]}
@@ -34,7 +33,9 @@ const ViewForm = ({ row, cols }: { row: any; cols: FormElementInstance[] }) => {
         </DialogTrigger>
         <DialogContent className="overflow-y-auto max-h-[95%] rounded-md">
           {cols.map((instance: FormElementInstance) =>
-            elementMapper(instance.id)
+            LayoutElements.includes(instance.type)
+              ? null
+              : elementMapper(instance.id)
           )}
         </DialogContent>
       </Dialog>

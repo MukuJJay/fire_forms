@@ -18,7 +18,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { FormElementInstance } from "@/interfaces/form-elements";
+import {
+  FormElementInstance,
+  LayoutElements,
+} from "@/interfaces/form-elements";
 import { Button } from "@/components/ui/button";
 import { DatePickerWithRange } from "../date-range-picker";
 import useDateRange from "@/hooks/use-date-range";
@@ -37,6 +40,10 @@ function mapColumn<TData, TValue>(contentStr: string) {
   const columns = [];
 
   for (const instance of content) {
+    if (LayoutElements.includes(instance.type)) {
+      continue;
+    }
+
     const obj = instance.extraAttributes;
     const column: ColumnDef<TData, TValue> = { accessorKey: "", header: "" };
 

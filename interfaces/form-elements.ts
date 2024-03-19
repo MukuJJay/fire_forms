@@ -25,6 +25,14 @@ export type ElementType =
   | "CheckboxField"
   | "RadioField";
 
+export const LayoutElements = [
+  "HeadingField",
+  "SubHeadingField",
+  "ParagraphField",
+  "SeparatorField",
+  "SpacerField",
+];
+
 export interface FormElementInstance {
   id: string;
   type: ElementType;
